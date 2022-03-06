@@ -1,0 +1,288 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300;0,600;1,400&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #242341;
+}
+
+.App {
+    border-radius: 0.5rem;
+    width: 55rem;
+    height: 50rem;
+    overflow: hidden;
+    background-color: #000;
+    color: #fff;
+    border-radius: 1rem;
+    z-index: 3;
+    overflow: hidden;
+}
+
+header {
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: #dedede;
+    font-family: monospace;
+    font-size: 1rem;
+    border-bottom: 1px solid #444;
+}
+
+.room-section {
+    width: 25%;
+    height: 100%;
+    background-color: #111;
+    color: #fff;
+    padding: 2rem;
+    overflow: auto;
+}
+
+.chatbox {
+    height: 100%;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    overflow-y: scroll;
+    position: relative;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    height: calc(100% - 4rem);
+    width: 100%;
+}
+
+form {
+    padding: 1rem;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+form * {
+    padding: 0.5rem;
+}
+
+input[type="text"] {
+    width: 25rem;
+}
+
+.logo-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+}
+
+.leave-btn {
+    border: none;
+    outline: none;
+    background: #c80000;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: "Karla", sans-serif;
+}
+
+header h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.25rem;
+}
+
+#messages {
+    display: flex;
+    flex-direction: column;
+    background-color: #000;
+    padding: 0.5rem 1rem;
+    padding: 1rem;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    justify-content: flex-end;
+}
+
+.app-message-input {
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.messages-list {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    /* align-items: flex-end; */
+    list-style: none;
+}
+
+.message {
+    color: #cecece;
+    padding: 0.35rem 0.75rem 0.5rem;
+    margin: 0.2rem 0;
+    border-radius: 1rem;
+    font-family: "Karla", sans-serif;
+    font-size: 14px;
+    cursor: default;
+    align-self: flex-start;
+    background-color: #4d38a2;
+}
+
+.message-box {
+    width: 100%;
+    height: calc(100% - 4rem);
+    display: flex;
+    flex-direction: column;
+}
+
+.sent {
+    text-align: right;
+    background-color: #4d38a2;
+    align-self: flex-end;
+}
+
+.received {
+    background-color: #19182b;
+    align-self: flex-start;
+}
+
+#chat-form {
+    padding: 1rem;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 0.25rem;
+    align-items: center;
+    background-color: #000;
+    border-top: 1px solid #555;
+}
+
+input,
+#send-location {
+    background-color: #333333;
+    outline: none;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    color: #fff;
+}
+
+input[type="submit"]:hover,
+#send-location {
+    cursor: pointer;
+}
+
+input[type="submit"],
+#send-location {
+    padding: 0.5rem 1.25rem;
+    background: #10539f;
+}
+
+.message-input::placeholder {
+    font-family: "Karla", sans-serif;
+}
+
+.message-input {
+    width: 80%;
+}
+
+.send-button {
+    width: 15%;
+    background-color: #40009d;
+    cursor: pointer;
+}
+
+.location-anchor {
+    color: #fff;
+}
+
+.senders-photo {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.notification {
+    font-size: 0.75rem;
+    color: #fff;
+    border-top: 1px solid #3a3a3a;
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+#room-users {
+    list-style: inside;
+    margin: 1rem auto;
+}
+
+.chat-username {
+    font-style: italic;
+}
+
+#room-name {
+    border-bottom: 1px solid;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.notification:nth-child(1) {
+    font-style: italic;
+}
+
+.admin-text {
+    font-style: italic;
+}
+
+
+/* Scroll bar */
+
+::-webkit-scrollbar {
+    width: 5px;
+    background: #00000000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #adadad21;
+    border-radius: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    /*Big smartphones [426px -> 600px]*/
+    .App {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+    }
+    main {
+        flex-direction: column;
+    }
+    .room-section {
+        width: auto;
+        height: 40vh;
+    }
+    .chatbox {
+        width: auto;
+    }
+}
