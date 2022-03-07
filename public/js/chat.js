@@ -32,7 +32,7 @@ socket.on("message", (message) => {
 
     if (message.username == "Admin") {
         li.classList.add("notification");
-    } else if (message.username === username) {
+    } else if (message.username === username.trim().toLowerCase()) {
         li.classList.add("message");
         li.classList.add("sent");
     } else {
