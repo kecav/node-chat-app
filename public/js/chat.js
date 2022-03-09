@@ -18,6 +18,11 @@ const { username, room } = Qs.parse(location.search, {
     ignoreQueryPrefix: true,
 });
 
+const scrollBottom = () => {
+    var div = document.getElementById("messages");
+    div.scrollTop = div.scrollHeight;
+};
+
 socket.on("message", (message) => {
     // const html = Mustache.render(messageTemplate, {
     //     username: message.username,
@@ -30,25 +35,30 @@ socket.on("message", (message) => {
     const name = document.createElement("p");
     const messageText = document.createElement("p");
 
+    // notification
     if (message.username == "Admin") {
         li.classList.add("notification");
-    } else if (message.username === username.trim().toLowerCase()) {
-        li.classList.add("message");
-        li.classList.add("sent");
+        messageText.classList.add("admin-text");
     } else {
         li.classList.add("message");
-        li.classList.add("received");
+        messageText.classList.add("chat-message");
+        if (message.username === username.trim().toLowerCase()) {
+            // user is sender
+            li.classList.add("sent");
+        } else {
+            // other sender
+            li.classList.add("received");
+            name.classList.add("chat-username");
+            name.innerText = message.username;
+            li.appendChild(name);
+        }
     }
 
-    name.innerText = message.username == "Admin" ? null : message.username;
-    messageText.classList.add(
-        message.username == "Admin" ? "admin-text" : "chat-message"
-    );
     messageText.innerText = message.text;
-
-    name.classList.add("chat-username");
-    li.append(name, messageText);
+    li.appendChild(messageText);
     $messages.appendChild(li);
+
+    scrollBottom();
 });
 
 socket.on("locationMessage", (location) => {
@@ -63,10 +73,11 @@ socket.on("locationMessage", (location) => {
     const name = document.createElement("p");
     const a = document.createElement("a");
 
-    if (location.username === username) {
+    if (location.username === username.trim().toLowerCase()) {
         li.classList.add("sent");
     } else {
         li.classList.add("received");
+        name.innerText = location.username;
     }
 
     li.classList.add("message");
@@ -74,10 +85,11 @@ socket.on("locationMessage", (location) => {
     a.href = location.url;
     a.target = "_blank";
     a.innerText = "Current location";
-    name.innerText = location.username;
     name.classList.add("chat-username");
     li.append(name, a);
     $messages.appendChild(li);
+
+    scrollBottom();
 });
 
 socket.on("roomData", ({ room, users }) => {
@@ -130,7 +142,7 @@ $locationButton.addEventListener("click", () => {
             },
             (feedback) => {
                 $locationButton.removeAttribute("disabled");
-                console.log(feedback);
+                // console.log(feedback);
             }
         );
     });
